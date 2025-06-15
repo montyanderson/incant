@@ -1,6 +1,12 @@
 import OpenAI from "jsr:@openai/openai";
 
+/**
+ * incant configuration object
+ */
 export type IncantConfig = {
+	/**
+	 * incant reads your env var dictionary to look for api keys & other configs
+	 */
 	env: any;
 };
 
@@ -20,10 +26,16 @@ const getDefaultModel = (config: IncantConfig) => {
 	return config.env.OPENAI_DEFAULT_MODEL || "gpt-4o";
 };
 
+/**
+ * create a new incant instance ;)
+ */
 export const createIncant = (config: IncantConfig) => {
 	const client = getOpenAIClient(config);
 	const defaultModel = getDefaultModel(config);
 
+	/**
+	 * create a selector function to return a single option of input array
+	 */
 	const createSelector =
 		<Option>(criteria: string) =>
 		async (options: Option[]): Promise<Option> => {
@@ -52,6 +64,9 @@ export const createIncant = (config: IncantConfig) => {
 			return options[index];
 		};
 
+	/**
+	 * create a filtration function to return a subset of input array
+	 */
 	const createFilter =
 		<Element>(criteria: string) =>
 		async (elements: Element[]): Promise<Element[]> => {
