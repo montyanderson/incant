@@ -10,6 +10,21 @@ export type IncantConfig = {
 	env: any;
 };
 
+export type Incant = {
+	/**
+	 * create a selector function to return a single option of input array
+	 */
+	createSelector: <Option>(
+		criteria: string,
+	) => (options: Option[]) => Promise<Option>;
+	/**
+	 * create a filtration function to return a subset of input array
+	 */
+	createFilter: <Element>(
+		criteria: string,
+	) => (elements: Element[]) => Promise<Element[]>;
+};
+
 const getOpenAIClient = (config: IncantConfig) => {
 	const apiKey = config?.env.OPENAI_API_KEY;
 
@@ -29,13 +44,10 @@ const getDefaultModel = (config: IncantConfig) => {
 /**
  * create a new incant instance ;)
  */
-export const createIncant = (config: IncantConfig) => {
+export const createIncant = (config: IncantConfig): Incant => {
 	const client = getOpenAIClient(config);
 	const defaultModel = getDefaultModel(config);
 
-	/**
-	 * create a selector function to return a single option of input array
-	 */
 	const createSelector =
 		<Option>(criteria: string) =>
 		async (options: Option[]): Promise<Option> => {
@@ -62,9 +74,6 @@ export const createIncant = (config: IncantConfig) => {
 			return options[index];
 		};
 
-	/**
-	 * create a filtration function to return a subset of input array
-	 */
 	const createFilter =
 		<Element>(criteria: string) =>
 		async (elements: Element[]): Promise<Element[]> => {
