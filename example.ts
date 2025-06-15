@@ -13,13 +13,13 @@ const input = [
 	999,
 ];
 
-const pickHighestNumber = createSelector("Pick the highest number");
+const pickHighestNumber = createSelector<number>("Pick the highest number");
 
 const highestNumber = await pickHighestNumber(input);
 
 console.log("Highest Number:", highestNumber);
 
-const pickLowestNumber = createSelector("Pick the lowest number");
+const pickLowestNumber = createSelector<number>("Pick the lowest number");
 
 const lowestNumber = await pickLowestNumber(input);
 
