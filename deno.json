@@ -1,6 +1,6 @@
 {
 	"name": "@monty/incant",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"imports": {
 		"@openai/openai": "jsr:@openai/openai@^4.102.0"
 	},
