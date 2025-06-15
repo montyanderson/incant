@@ -1,4 +1,4 @@
-import OpenAI from "jsr:@openai/openai";
+import OpenAI from "@openai/openai";
 
 /**
  * incant configuration object
