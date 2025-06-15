@@ -1,5 +1,7 @@
 # incant
 
+[![JSR](https://jsr.io/badges/@monty/incant)](https://jsr.io/@monty/incant)
+
 Add magic spells to your code.
 
 ![dancing](./twin-peaks-audrey-horne.gif)
