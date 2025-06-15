@@ -52,5 +52,26 @@ export const createIncant = (config: IncantConfig) => {
 			return options[index];
 		};
 
-	return { createSelector };
+	const createFilter =
+		<Element>(criteria: string) =>
+		async (elements: Element[]): Promise<Element[]> => {
+			const results = await Promise.all(elements.map(async (element) => {
+				const response = await client.responses.create({
+					model: defaultModel,
+					instructions:
+						`You are a filter agent.\nYour job is to return whether an item matches the criteria: ${criteria}\nRespond only with true or false.`,
+					input: JSON.stringify(
+						element,
+						null,
+						"\t",
+					),
+				});
+
+				return response.output_text.toLowerCase() === "true";
+			}));
+
+			return elements.filter((_, index) => results[index]);
+		};
+
+	return { createSelector, createFilter };
 };

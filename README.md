@@ -6,13 +6,19 @@ Add magic spells to your code.
 
 ## usage
 
+Incant gives you primtivies that let you integrate language model invocations safely to your program.
+
 ```typescript
 // incant looks in your env array for an OPENAI_API_KEY & other vars
 // easy to end users to configure for your cli
 const { createSelector } = createIncant({
 	env: Deno.env.toObject(),
 });
+```
 
+### selectors
+
+```typescript
 // create a llm-powered function to pick highest number
 const pickHighestNumber = createSelector<number>("Pick the highest number");
 
@@ -27,4 +33,27 @@ const input = [
 
 // type-safe and hallucination-safe – output is guaranteed to be one of input array
 const highestNumber = await pickHighestNumber(input);
+```
+
+### filters
+
+```typescript
+// make a function to filter only male names
+const filterMaleNames = createFilter<string>("Return male names");
+
+const maleNames = await filterMaleNames([
+	"John",
+	"Jack",
+	"Jane",
+	"Beatrice",
+	"Mike",
+	"Emily",
+	"Charlie",
+	"Robin",
+	"Alex",
+]);
+
+// original array ordering is preserved
+// no hallucinations possible: output is guaranteed to be subset of input array
+// [ "John", "Jack", "Mike", "Charlie", "Alex" ]
 ```
