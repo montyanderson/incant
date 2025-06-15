@@ -11,5 +11,6 @@
 		"indentWidth": 4,
 		"singleQuote": false,
 		"proseWrap": "preserve"
-	}
+	},
+	"license": "MIT"
 }
