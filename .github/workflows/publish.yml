@@ -1,0 +1,16 @@
+name: Publish
+
+on:
+    push:
+        tags:
+            - "v*" # runs on tags starting with v, e.g. v1.0.0
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            - run: npx jsr publish
