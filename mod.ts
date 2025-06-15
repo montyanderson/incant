@@ -39,8 +39,6 @@ export const createIncant = (config: IncantConfig) => {
 	const createSelector =
 		<Option>(criteria: string) =>
 		async (options: Option[]): Promise<Option> => {
-			const models = await client.models.list();
-
 			const response = await client.responses.create({
 				model: defaultModel,
 				instructions:
