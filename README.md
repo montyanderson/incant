@@ -8,6 +8,9 @@ Add magic spells to your code.
 
 Incant gives you primtivies that let you integrate language model invocations safely to your program.
 
+> [!WARNING]
+> All data provided as input to incant primitives will be sent to upstream providers. Avoid sending personal and sensitive information.
+
 ```typescript
 // incant looks in your env array for an OPENAI_API_KEY & other vars
 // easy to end users to configure for your cli
