@@ -8,15 +8,15 @@ Add magic spells to your code.
 
 ## usage
 
-Incant gives you primtivies that let you integrate language model invocations safely to your program.
+Incant gives you primtivies to integrate language model invocations safely.
 
 > [!WARNING]
-> All data provided as input to incant primitives will be sent to upstream providers. Avoid sending personal and sensitive information.
+> All data provided as input to incant primitives will be sent to upstream inferene providers. Avoid sending personal and sensitive information.
 
 ```typescript
 // incant looks in your env array for an OPENAI_API_KEY & other vars
-// easy to end users to configure for your cli
-const { createSelector } = createIncant({
+// easy for end users to configure for your cli
+const { createSelector, createFilter } = createIncant({
 	env: Deno.env.toObject(),
 });
 ```
@@ -24,7 +24,7 @@ const { createSelector } = createIncant({
 ### selectors
 
 ```typescript
-// create a llm-powered function to pick highest number
+// create a function to pick the highest number
 const pickHighestNumber = createSelector<number>("Pick the highest number");
 
 const input = [
