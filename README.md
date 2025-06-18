@@ -11,7 +11,7 @@ Add magic spells to your code.
 Incant gives you primtivies to integrate language model invocations safely.
 
 > [!WARNING]
-> All data provided as input to incant primitives will be sent to upstream inferene providers. Avoid sending personal and sensitive information.
+> All data provided as input to incant primitives will be sent to upstream inference providers. Avoid sending personal and sensitive information.
 
 ```typescript
 // incant looks in your env array for an OPENAI_API_KEY & other vars
@@ -59,6 +59,6 @@ const maleNames = await filterMaleNames([
 ]);
 
 // original array ordering is preserved
-// no hallucinations possible: output is guaranteed to be subset of input array
+// no hallucinations possible – output is guaranteed to be subset of input array
 // [ "John", "Jack", "Mike", "Charlie", "Alex" ]
 ```
